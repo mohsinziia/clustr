@@ -242,11 +242,28 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
   }
 
   user.password = newPassword;
+
+  // logout after password change
+  user.refreshToken = undefined;
+
   await user.save({ validateBeforeSave: false });
+
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
 
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "Password changed successfully"));
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(
+      new ApiResponse(
+        200,
+        {},
+        "Password changed successfully. You have been logged out."
+      )
+    );
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
@@ -290,7 +307,9 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
   let prevAvatar, newAvatar;
   try {
     [prevAvatar, newAvatar] = await Promise.all([
-      deleteFromCloudinary(req.user?.avatar?.public_id),
+      deleteFromCloudinary(req.user?.avatar?.public_id, {
+        resource_type: "image",
+      }),
       uploadOnCloudinary(avatarLocalPath),
     ]);
   } catch (error) {
@@ -329,7 +348,9 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
   let prevCoverImage, newCoverImage;
   try {
     [prevCoverImage, newCoverImage] = await Promise.all([
-      deleteFromCloudinary(req.user?.coverImage?.public_id),
+      deleteFromCloudinary(req.user?.coverImage?.public_id, {
+        resource_type: "image",
+      }),
       uploadOnCloudinary(coverImageLocalPath),
     ]);
   } catch (error) {

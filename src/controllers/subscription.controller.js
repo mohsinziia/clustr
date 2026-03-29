@@ -86,15 +86,16 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
 
   try {
     const subscribers = await Subscription.aggregate(pipeline);
-    return res
-      .status(200)
-      .json(
-        new ApiResponse(
-          200,
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        {
           subscribers,
-          "Fetched channel subscribers successfully"
-        )
-      );
+          count: subscribers.length,
+        },
+        "Fetched channel subscribers successfully"
+      )
+    );
   } catch (error) {
     throw new ApiError(500, "Error while fetching channel subscribers");
   }
@@ -143,7 +144,7 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          subscribedChannels,
+          { subscribedChannels, count: subscribedChannels.length },
           "Fetched channel subscribed channels successfully"
         )
       );

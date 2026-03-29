@@ -86,6 +86,71 @@ const getUserTweets = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, result, "Fetched user tweets successfully"));
 });
 
+const getAllTweets = asyncHandler(async (req, res) => {
+  const {
+    page = 1,
+    limit = 10,
+    query = "",
+    sortBy = "createdAt",
+    sortType = "",
+  } = req.query;
+
+  const matchStage = {};
+  if (query) {
+    matchStage.title = {
+      $regex: query,
+      $options: "i",
+    };
+  }
+
+  const sortOptions = {
+    [sortBy]: sortType === "asc" ? 1 : 1,
+  };
+
+  const tweets = Tweet.aggregate([
+    {
+      $match: matchStage,
+    },
+    {
+      $sort: sortOptions,
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "owner",
+        foreignField: "_id",
+        as: "owner",
+        pipeline: [
+          {
+            $project: {
+              fullName: 1,
+              username: 1,
+              avatar: 1,
+            },
+          },
+        ],
+      },
+    },
+    {
+      $addFields: {
+        owner: {
+          $first: "$owner",
+        },
+      },
+    },
+  ]);
+
+  const options = {
+    limit,
+    page,
+  };
+
+  const result = await Tweet.aggregatePaginate(tweets, options);
+  return res
+    .status(200)
+    .json(new ApiResponse(200, result, "Fetched all tweets successfully"));
+});
+
 const updateTweet = asyncHandler(async (req, res) => {
   //TODO: update tweet
 
@@ -132,4 +197,4 @@ const deleteTweet = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, result, "Tweet deleted successfully"));
 });
 
-export { createTweet, getUserTweets, updateTweet, deleteTweet };
+export { createTweet, getUserTweets, getAllTweets, updateTweet, deleteTweet };

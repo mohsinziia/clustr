@@ -201,8 +201,23 @@ const updateVideo = asyncHandler(async (req, res) => {
   if (!thumbnailLocalPath) {
     throw new ApiError(400, "Thumbnail is required");
   }
+  const oldVideo = await Video.findById({ _id: videoId });
+  let prevThumbnail, newThumbnail;
+  try {
+    [prevThumbnail, newThumbnail] = await Promise.all([
+      deleteFromCloudinary(oldVideo?.thumbnail?.public_id, {
+        resource_type: "image",
+      }),
+      uploadOnCloudinary(thumbnailLocalPath),
+    ]);
+  } catch (error) {
+    throw new ApiError(
+      500,
+      "Error while uploading new thumbnail and deleting previous thumbnail"
+    );
+  }
 
-  const newThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
+  // const newThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
   if (!newThumbnail) {
     throw new ApiError(500, "Error while uploading thumbnail image");
   }
@@ -239,7 +254,9 @@ const deleteVideo = asyncHandler(async (req, res) => {
   let thumbnailDeleteResult;
   try {
     [videoDeleteResult, thumbnailDeleteResult] = await Promise.all([
-      deleteFromCloudinary(video.videoFile.public_id),
+      deleteFromCloudinary(video.videoFile.public_id, {
+        resource_type: "video",
+      }),
       deleteFromCloudinary(video.thumbnail.public_id),
     ]);
   } catch (error) {
