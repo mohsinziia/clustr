@@ -9,6 +9,15 @@ const toggleSubscription = asyncHandler(async (req, res) => {
   const { channelId } = req.params;
   // TODO: toggle subscription
 
+  if (!isValidObjectId(channelId)) {
+    throw new ApiError(400, "Invalid channel ID");
+  }
+
+  // backend/controllers/subscription.controller.js
+  if (channelId === req.user._id.toString()) {
+    throw new ApiError(400, "You cannot subscribe to yourself");
+  }
+
   const subscription = await Subscription.findOne({
     channel: channelId,
     subscriber: req.user._id,

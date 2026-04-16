@@ -14,16 +14,23 @@ const getVideoComments = asyncHandler(async (req, res) => {
     createdAt: 1,
   };
 
+  // controllers/comment.controller.js
+
   const pipeline = [
     {
+      // Match comments belonging to the specific video
       $match: {
         video: mongoose.Types.ObjectId.createFromHexString(videoId),
       },
     },
     {
-      $sort: sortOptions,
+      // Sort by creation date (1 for oldest first, -1 for newest)
+      $sort: {
+        createdAt: 1,
+      },
     },
     {
+      // Populate owner details (User who wrote the comment)
       $lookup: {
         from: "users",
         localField: "owner",
@@ -34,13 +41,56 @@ const getVideoComments = asyncHandler(async (req, res) => {
             $project: {
               fullName: 1,
               username: 1,
-              coverImage: 1,
+              avatar: "$avatar.url",
+              // avatar: 1, // Changed from coverImage to avatar to match your UI needs
             },
           },
         ],
       },
     },
     {
+      // Populate Likes for this comment
+      $lookup: {
+        from: "likes",
+        let: { comment_id: "$_id" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  // Match the polymorphic 'likedItem' field instead of 'comment'
+                  { $eq: ["$likedItem", "$$comment_id"] },
+                  // Ensure we only count likes specifically for Comments
+                  { $eq: ["$itemType", "Comment"] }
+                ]
+              }
+            }
+          }
+        ],
+        as: "likes"
+      }
+    },
+    {
+      // Calculate total likes and check if the CURRENT user liked it
+      $addFields: {
+        likesCount: { $size: "$likes" },
+        isLiked: {
+          $cond: {
+            if: {
+              $in: [
+                // Ensure req.user._id is cast to ObjectId for a proper match
+                new mongoose.Types.ObjectId(req.user?._id),
+                "$likes.likedBy"
+              ]
+            },
+            then: true,
+            else: false
+          }
+        }
+      }
+    },
+    {
+      // Clean up the owner array to a single object
       $addFields: {
         owner: {
           $first: "$owner",
@@ -48,7 +98,6 @@ const getVideoComments = asyncHandler(async (req, res) => {
       },
     },
   ];
-
   const options = {
     limit,
     page,

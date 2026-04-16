@@ -16,7 +16,7 @@ const createTweet = asyncHandler(async (req, res) => {
 
   const tweet = await Tweet.create({
     content: content || "Empty comment",
-    owner: req.user?.id,
+    owner: req.user?._id,
   });
 
   if (!tweet) {
@@ -130,6 +130,39 @@ const getAllTweets = asyncHandler(async (req, res) => {
           },
         ],
       },
+    },
+    {
+      $lookup: {
+        from: "likes",
+        let: { tweet_id: "$_id" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  { $eq: ["$likedItem", "$$tweet_id"] },
+                  { $eq: ["$itemType", "Tweet"] } // Ensure only Tweet likes are counted
+                ]
+              }
+            }
+          }
+        ],
+        as: "likes"
+      }
+    },
+    {
+      $addFields: {
+        likesCount: {
+          $size: "$likes"
+        },
+        isLiked: {
+          $cond: {
+            if: { $in: [req.user?._id, "$likes.likedBy"] },
+            then: true,
+            else: false
+          }
+        }
+      }
     },
     {
       $addFields: {

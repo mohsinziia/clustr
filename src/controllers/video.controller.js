@@ -71,7 +71,27 @@ const getAllVideos = asyncHandler(async (req, res) => {
         ],
       },
     },
-
+    // TODO:try to ship the total number of likes for each video, plus the users who liked the video
+    {
+      $lookup: {
+        from: "likes",
+        localField: "_id",
+        foreignField: "likedItem", // Using your polymorphic field
+        as: "likes"
+      }
+    },
+    {
+      $addFields: {
+        likesCount: { $size: "$likes" },
+        isLiked: {
+          $cond: {
+            if: { $in: [req.user?._id, "$likes.likedBy"] },
+            then: true,
+            else: false
+          }
+        }
+      }
+    },
     // lookup gives an ugly array because in theory there can be
     // more than one documents but in our code it is always one
     // so we select its first element only
@@ -82,6 +102,20 @@ const getAllVideos = asyncHandler(async (req, res) => {
         },
       },
     },
+    // Add this stage to your pipeline in src/controllers/video.controller.js
+    {
+      $lookup: {
+        from: "comments",
+        localField: "_id",
+        foreignField: "video",
+        as: "commentCount"
+      }
+    },
+    {
+      $addFields: {
+        commentCount: { $size: "$commentCount" }
+      }
+    }
   ];
 
   pipeline.splice(1, 0, { $sort: sortOptions });
@@ -191,55 +225,56 @@ const getVideoById = asyncHandler(async (req, res) => {
 const updateVideo = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   const { title, description } = req.body;
-  //TODO: update video details like title, description, thumbnail
 
-  if (title.trim() === "" || description.trim() === "") {
-    throw new ApiError(400, "title and description are required");
+  if (!title?.trim() || !description?.trim()) {
+    throw new ApiError(400, "Title and description are required");
   }
+
+  const updateData = {
+    title: title.trim(),
+    description: description.trim(),
+  };
 
   const thumbnailLocalPath = req.file?.path;
-  if (!thumbnailLocalPath) {
-    throw new ApiError(400, "Thumbnail is required");
-  }
-  const oldVideo = await Video.findById({ _id: videoId });
-  let prevThumbnail, newThumbnail;
-  try {
-    [prevThumbnail, newThumbnail] = await Promise.all([
-      deleteFromCloudinary(oldVideo?.thumbnail?.public_id, {
-        resource_type: "image",
-      }),
-      uploadOnCloudinary(thumbnailLocalPath),
-    ]);
-  } catch (error) {
-    throw new ApiError(
-      500,
-      "Error while uploading new thumbnail and deleting previous thumbnail"
-    );
-  }
 
-  // const newThumbnail = await uploadOnCloudinary(thumbnailLocalPath);
-  if (!newThumbnail) {
-    throw new ApiError(500, "Error while uploading thumbnail image");
+  if (thumbnailLocalPath) {
+    const oldVideo = await Video.findById(videoId);
+    if (!oldVideo) throw new ApiError(404, "Video not found");
+
+    try {
+      const [newThumbnail] = await Promise.all([
+        uploadOnCloudinary(thumbnailLocalPath),
+        oldVideo.thumbnail?.public_id
+          ? deleteFromCloudinary(oldVideo.thumbnail.public_id, { resource_type: "image" })
+          : Promise.resolve(null)
+      ]);
+
+      if (!newThumbnail) {
+        throw new ApiError(500, "Error while uploading thumbnail image");
+      }
+
+      updateData.thumbnail = {
+        url: newThumbnail.url,
+        public_id: newThumbnail.public_id
+      };
+    } catch (error) {
+      throw new ApiError(500, "Failed to process new thumbnail image");
+    }
   }
 
   const video = await Video.findByIdAndUpdate(
     videoId,
-    {
-      $set: {
-        title: title,
-        description: description,
-        thumbnail: { url: newThumbnail.url, public_id: newThumbnail.public_id },
-      },
-    },
+    { $set: updateData },
     { new: true }
   );
 
   if (!video) {
     throw new ApiError(500, "Error while updating video details");
   }
+
   return res
-    .status(201)
-    .json(new ApiResponse(201, video, "Video details updated successfully"));
+    .status(200) // 200 is more appropriate for an update than 201
+    .json(new ApiResponse(200, video, "Video details updated successfully"));
 });
 
 const deleteVideo = asyncHandler(async (req, res) => {

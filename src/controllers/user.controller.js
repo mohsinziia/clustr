@@ -437,7 +437,8 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
           subscribersCount: 1,
           channelsSubscribedToCount: 1,
           isSubscribed: 1,
-          avatar: 1,
+          avatar: "$avatar.url",
+          // avatar: 1,
           coverImage: 1,
           email: 1,
         },
@@ -463,7 +464,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
 });
 
 const getWatchHistory = asyncHandler(async (req, res) => {
-  console.log(req.user._id);
+  
   const user = await User.aggregate([
     {
       $match: {
