@@ -115,59 +115,41 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
   }
 });
 
-const toggleTweetLike = asyncHandler(async (req, res) => {
+// backend/controllers/like.controller.js
+
+// backend/controllers/like.controller.js
+
+ const toggleTweetLike = asyncHandler(async (req, res) => {
   const { tweetId } = req.params;
-  //TODO: toggle like on tweet
 
-  const tweet = await Tweet.findById(tweetId);
-
-  if (!tweet) {
-    throw new ApiError(400, "Invalid tweet id");
+  if (!isValidObjectId(tweetId)) {
+    throw new ApiError(400, "Invalid Tweet ID");
   }
 
-  try {
-    const like = await Like.findOne({
-      likedItem: tweetId,
-      itemType: "Tweet",
-      likedBy: req?.user._id,
-    });
-    let result;
+  // Logic identical to video: search, then delete or create
+  const existingLike = await Like.findOne({
+    likedItem: tweetId,
+    likedBy: req.user?._id,
+    itemType: "Tweet"
+  });
 
-    if (!like) {
-      // user has not liked the tweet, like the tweet by adding to db
-
-      result = await Like.create({
-        likedItem: tweetId,
-        itemType: "Tweet",
-        likedBy: req.user._id,
-      });
-
-      if (!result) {
-        throw new ApiError(500, "Error while liking tweet");
-      }
-
-      return res
-        .status(201)
-        .json(new ApiResponse(201, result, "Liked tweet successfully"));
-    } else {
-      // user has already liked the tweet, unlike the tweet by removing from db
-      result = await Like.deleteOne({
-        likedItem: tweetId,
-        itemType: "Tweet",
-        likedBy: req?.user._id,
-      });
-      if (result.deletedCount === 0) {
-        throw new ApiError(500, "Error while unliking the tweet");
-      }
-      return res
-        .status(200)
-        .json(new ApiResponse(200, result, "Unliked tweet successfully"));
-    }
-  } catch (error) {
-    throw new ApiError(400, "Error while toggling tweet like");
+  if (existingLike) {
+    await Like.findByIdAndDelete(existingLike._id);
+    return res.status(200).json(
+      new ApiResponse(200, { isLiked: false }, "Unliked")
+    );
   }
+
+  await Like.create({
+    likedItem: tweetId,
+    itemType: "Tweet",
+    likedBy: req.user?._id
+  });
+
+  return res.status(200).json(
+    new ApiResponse(200, { isLiked: true }, "Liked")
+  );
 });
-
 const getLikedVideos = asyncHandler(async (req, res) => {
   //TODO: get all liked videos
 

@@ -39,7 +39,6 @@ const userSchema = new Schema(
     },
     avatar: {
       type: imageSchema,
-      required: true,
     },
     coverImage: {
       type: imageSchema,

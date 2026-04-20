@@ -22,7 +22,17 @@ const uploadOnCloudinary = async (localFilePath) => {
 
     return response;
   } catch (error) {
-    fs.unlinkSync(localFilePath); // remove the locally saved temporary file as the upload operation got failed
+    console.error("Cloudinary upload failed:", error);
+    try {
+      fs.appendFileSync('error_log.txt', JSON.stringify(error) + '\n' + (error.message || '') + '\n');
+    } catch (e) {}
+    try {
+      if (fs.existsSync(localFilePath)) {
+        fs.unlinkSync(localFilePath);
+      }
+    } catch (fsError) {
+      console.error("Failed to delete local file:", fsError);
+    }
     return null;
   }
 };

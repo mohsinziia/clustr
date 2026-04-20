@@ -86,102 +86,59 @@ const getUserTweets = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, result, "Fetched user tweets successfully"));
 });
 
+// backend/controllers/tweet.controller.js
+
+// backend/controllers/tweet.controller.js
+
 const getAllTweets = asyncHandler(async (req, res) => {
-  const {
-    page = 1,
-    limit = 10,
-    query = "",
-    sortBy = "createdAt",
-    sortType = "",
-  } = req.query;
-
-  const matchStage = {};
-  if (query) {
-    matchStage.title = {
-      $regex: query,
-      $options: "i",
-    };
-  }
-
-  const sortOptions = {
-    [sortBy]: sortType === "asc" ? 1 : 1,
-  };
-
-  const tweets = Tweet.aggregate([
-    {
-      $match: matchStage,
-    },
-    {
-      $sort: sortOptions,
-    },
+  const tweets = await Tweet.aggregate([
     {
       $lookup: {
         from: "users",
         localField: "owner",
         foreignField: "_id",
         as: "owner",
-        pipeline: [
-          {
-            $project: {
-              fullName: 1,
-              username: 1,
-              avatar: 1,
-            },
-          },
-        ],
-      },
+        pipeline: [{ $project: { username: 1, fullName: 1, avatar: 1 } }]
+      }
+    },
+    { $addFields: { owner: { $first: "$owner" } } },
+    {
+      $lookup: {
+        from: "comments",
+        localField: "_id",
+        foreignField: "tweet",
+        as: "tweetComments"
+      }
     },
     {
       $lookup: {
         from: "likes",
-        let: { tweet_id: "$_id" },
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $and: [
-                  { $eq: ["$likedItem", "$$tweet_id"] },
-                  { $eq: ["$itemType", "Tweet"] } // Ensure only Tweet likes are counted
-                ]
-              }
-            }
-          }
-        ],
-        as: "likes"
+        localField: "_id",
+        foreignField: "likedItem",
+        as: "tweetLikes"
       }
     },
     {
       $addFields: {
-        likesCount: {
-          $size: "$likes"
-        },
+        commentCount: { $size: "$tweetComments" },
+        likesCount: { $size: "$tweetLikes" },
         isLiked: {
           $cond: {
-            if: { $in: [req.user?._id, "$likes.likedBy"] },
+            if: { $in: [req.user?._id, "$tweetLikes.likedBy"] },
             then: true,
             else: false
           }
         }
       }
     },
-    {
-      $addFields: {
-        owner: {
-          $first: "$owner",
-        },
-      },
-    },
+    { $project: { tweetComments: 0, tweetLikes: 0 } },
+    { $sort: { createdAt: -1 } }
   ]);
 
-  const options = {
-    limit,
-    page,
-  };
-
-  const result = await Tweet.aggregatePaginate(tweets, options);
-  return res
-    .status(200)
-    .json(new ApiResponse(200, result, "Fetched all tweets successfully"));
+  // This puts the array directly into response.data
+  return res.status(200).json(
+    new ApiResponse(200, tweets, "Tweets fetched successfully")
+  );
 });
 
 const updateTweet = asyncHandler(async (req, res) => {
@@ -229,5 +186,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, result, "Tweet deleted successfully"));
 });
+
+
 
 export { createTweet, getUserTweets, getAllTweets, updateTweet, deleteTweet };

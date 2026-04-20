@@ -1,0 +1,28 @@
+Error: Error while uploading video file
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/video.controller.js:187:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:328:13)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:328:13)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+

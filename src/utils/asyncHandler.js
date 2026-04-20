@@ -1,6 +1,10 @@
+import fs from 'fs';
 const asyncHandler = (requestHandler) => {
   return (req, res, next) => {
-    Promise.resolve(requestHandler(req, res, next)).catch((error) => next(error));
+    Promise.resolve(requestHandler(req, res, next)).catch((error) => {
+      try { fs.appendFileSync('error_log.txt', String(error?.stack || error) + '\n\n'); } catch(e){}
+      next(error);
+    });
   };
 };
 export { asyncHandler };

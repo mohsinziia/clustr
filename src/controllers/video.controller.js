@@ -29,8 +29,12 @@ const getAllVideos = asyncHandler(async (req, res) => {
   }
 
   if (userId && isValidObjectId(userId)) {
-    // matchStage.userId = mongoose.Types.ObjectId.createFromHexString(userId);
     matchStage.owner = new mongoose.Types.ObjectId(`${userId}`);
+    if (userId !== req.user?._id?.toString()) {
+      matchStage.isPublished = true;
+    }
+  } else {
+    matchStage.isPublished = true;
   }
 
   // const sortOptions = {
@@ -118,8 +122,6 @@ const getAllVideos = asyncHandler(async (req, res) => {
     }
   ];
 
-  pipeline.splice(1, 0, { $sort: sortOptions });
-
   const options = {
     page,
     limit,
@@ -133,7 +135,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
 });
 
 const publishAVideo = asyncHandler(async (req, res) => {
-  const { title, description, duration } = req.body;
+  const { title, description, duration, isPublished } = req.body;
   // TODO: get video, upload to cloudinary, create video
   if (!title || !description) {
     throw new ApiError(400, "title and description are needed");
@@ -193,9 +195,9 @@ const publishAVideo = asyncHandler(async (req, res) => {
       public_id: thumbnailResponse.public_id,
     },
     description,
-    duration,
+    duration: videoResponse.duration || 0,
     title,
-    isPublished: true,
+    isPublished: isPublished === 'false' ? false : true,
     owner: req.user._id,
   });
 
@@ -321,7 +323,7 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
   }
 
   video.isPublished = !video.isPublished;
-  video.save();
+  await video.save({ validateBeforeSave: false });
 
   return res
     .status(200)
