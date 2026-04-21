@@ -510,6 +510,43 @@ const getWatchHistory = asyncHandler(async (req, res) => {
       )
     );
 });
+const addVideoToHistory = asyncHandler(async (req, res) => {
+  const { videoId } = req.params;
+
+  if (!videoId) {
+    throw new ApiError(400, "videoId is required");
+  }
+
+  // Remove the video if it already exists to avoid duplicates and move it to the end
+  await User.findByIdAndUpdate(req.user._id, {
+    $pull: { watchHistory: videoId },
+  });
+
+  // Push to the end of the array (most recent)
+  await User.findByIdAndUpdate(req.user._id, {
+    $push: { watchHistory: videoId },
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Video added to watch history"));
+});
+
+const removeVideoFromHistory = asyncHandler(async (req, res) => {
+  const { videoId } = req.params;
+
+  if (!videoId) {
+    throw new ApiError(400, "videoId is required");
+  }
+
+  await User.findByIdAndUpdate(req.user._id, {
+    $pull: { watchHistory: videoId },
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Video removed from watch history"));
+});
 
 export {
   registerUser,
@@ -523,4 +560,6 @@ export {
   updateUserCoverImage,
   getUserChannelProfile,
   getWatchHistory,
+  addVideoToHistory,
+  removeVideoFromHistory,
 };
