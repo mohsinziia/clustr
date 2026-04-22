@@ -110,14 +110,25 @@ const getAllVideos = asyncHandler(async (req, res) => {
     {
       $lookup: {
         from: "comments",
-        localField: "_id",
-        foreignField: "video",
-        as: "commentCount"
+        let: { videoId: "$_id" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  { $eq: ["$commentOn", "$$videoId"] },
+                  { $eq: ["$onType", "Video"] }
+                ]
+              }
+            }
+          }
+        ],
+        as: "comments"
       }
     },
     {
       $addFields: {
-        commentCount: { $size: "$commentCount" }
+        commentCount: { $size: "$comments" }
       }
     }
   ];

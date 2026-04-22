@@ -20,7 +20,8 @@ const getVideoComments = asyncHandler(async (req, res) => {
     {
       // Match comments belonging to the specific video
       $match: {
-        video: mongoose.Types.ObjectId.createFromHexString(videoId),
+        commentOn: new mongoose.Types.ObjectId(videoId),
+        onType: "Video"
       },
     },
     {
@@ -132,7 +133,8 @@ const addVideoComment = asyncHandler(async (req, res) => {
 
   const comment = await Comment.create({
     content: content || "Empty comment",
-    video: videoId,
+    commentOn: videoId,
+    onType: "Video",
     owner: req.user?._id,
   });
 
@@ -204,7 +206,8 @@ const addTweetComment = asyncHandler(async (req, res) => {
 
   const comment = await Comment.create({
     content,
-    tweet: tweetId, // Link to tweet instead of video
+    commentOn: tweetId,
+    onType: "Tweet",
     owner: req.user?._id
   });
 
@@ -222,7 +225,7 @@ const getTweetComments = asyncHandler(async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
 
   const aggregate = Comment.aggregate([
-    { $match: { tweet: new mongoose.Types.ObjectId(tweetId) } },
+    { $match: { commentOn: new mongoose.Types.ObjectId(tweetId), onType: "Tweet" } },
     {
       $lookup: {
         from: "users",

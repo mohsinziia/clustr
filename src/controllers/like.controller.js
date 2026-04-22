@@ -41,7 +41,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 
       return res
         .status(201)
-        .json(new ApiResponse(201, result, "Liked the video successfully"));
+        .json(new ApiResponse(201, { isLiked: true }, "Liked the video successfully"));
     } else {
       // video is liked, unlike the video by removing from db
       result = await Like.deleteOne({
@@ -55,7 +55,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 
       return res
         .status(200)
-        .json(new ApiResponse(200, result, "Unliked the video successfully"));
+        .json(new ApiResponse(200, { isLiked: false }, "Unliked the video successfully"));
     }
   } catch (error) {
     throw new ApiError(500, "Error while toggling video like");
@@ -119,7 +119,7 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
 
 // backend/controllers/like.controller.js
 
- const toggleTweetLike = asyncHandler(async (req, res) => {
+const toggleTweetLike = asyncHandler(async (req, res) => {
   const { tweetId } = req.params;
 
   if (!isValidObjectId(tweetId)) {

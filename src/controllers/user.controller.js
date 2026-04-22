@@ -8,6 +8,11 @@ import {
 } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
+import { generateUsernameAI } from "../utils/ai.js";
+import { isClean } from "../utils/profanity.js";
+import { sendVerificationEmail } from "../utils/mail.js";
+import { OTP } from "../models/otp.model.js";
+import crypto from "crypto";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -74,6 +79,10 @@ const registerUser = asyncHandler(async (req, res) => {
     }
   }
 
+  if (!isClean(username)) {
+    throw new ApiError(400, "Username contains inappropriate language");
+  }
+
   const user = await User.create({
     fullName,
     avatar,
@@ -91,9 +100,20 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
 
+  // Generate and send OTP
+  const otp = crypto.randomInt(100000, 999999).toString();
+  await OTP.create({ email: createdUser.email, otp });
+  await sendVerificationEmail(createdUser.email, otp);
+
   return res
     .status(201)
-    .json(new ApiResponse(200, createdUser, "User registered Successfully"));
+    .json(
+      new ApiResponse(
+        201,
+        { user: createdUser },
+        "User registered successfully. Please check your email for the verification code."
+      )
+    );
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -115,7 +135,13 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 
   if (!user) {
-    throw new ApiError(404, " User does not exist");
+    throw new ApiError(404, "User does not exist");
+  }
+
+  if (!user.isVerified) {
+    return res.status(403).json(
+      new ApiResponse(403, { email: user.email }, "Please verify your email before logging in")
+    );
   }
 
   const isPasswordValid = await user.isPasswordCorrect(password);
@@ -227,7 +253,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 const changeCurrentPassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword } = req.body;
 
-  const user = await User.findById(req.user?._id);
+  const user = await User.findById(req.user?._id); // getting the primary key
   const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
 
   if (!isPasswordCorrect) {
@@ -338,19 +364,24 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Cover image file is missing");
   }
 
-  let prevCoverImage, newCoverImage;
-  try {
-    [prevCoverImage, newCoverImage] = await Promise.all([
-      deleteFromCloudinary(req.user?.coverImage?.public_id, {
+  // Safely delete old image if it exists
+  if (req.user?.coverImage?.public_id) {
+    try {
+      await deleteFromCloudinary(req.user.coverImage.public_id, {
         resource_type: "image",
-      }),
-      uploadOnCloudinary(coverImageLocalPath),
-    ]);
+      });
+    } catch (error) {
+      console.warn("Failed to delete old cover image, skipping:", error.message);
+    }
+  }
+
+  // Upload new image
+  let newCoverImage;
+  try {
+    newCoverImage = await uploadOnCloudinary(coverImageLocalPath);
   } catch (error) {
-    throw new ApiError(
-      500,
-      "Error while creating new cover image and deleting previous cover image"
-    );
+    console.error("Cloudinary upload failed:", error);
+    throw new ApiError(500, "Error while uploading cover image to Cloudinary");
   }
 
   if (!newCoverImage.url) {
@@ -457,7 +488,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
 });
 
 const getWatchHistory = asyncHandler(async (req, res) => {
-  
+
   const user = await User.aggregate([
     {
       $match: {
@@ -485,16 +516,69 @@ const getWatchHistory = asyncHandler(async (req, res) => {
                     avatar: 1,
                   },
                 },
-                {
-                  $addFields: {
-                    owner: {
-                      $first: "$owner",
-                    },
-                  },
-                },
               ],
             },
           },
+          {
+            $addFields: {
+              owner: {
+                $first: "$owner",
+              },
+            },
+          },
+          {
+            // Lookup Likes
+            $lookup: {
+              from: "likes",
+              let: { videoId: "$_id" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$likedItem", "$$videoId"] },
+                        { $eq: ["$itemType", "Video"] }
+                      ]
+                    }
+                  }
+                }
+              ],
+              as: "likes"
+            }
+          },
+          {
+            // Lookup Comments
+            $lookup: {
+              from: "comments",
+              let: { videoId: "$_id" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$commentOn", "$$videoId"] },
+                        { $eq: ["$onType", "Video"] }
+                      ]
+                    }
+                  }
+                }
+              ],
+              as: "comments"
+            }
+          },
+          {
+            $addFields: {
+              likesCount: { $size: "$likes" },
+              commentCount: { $size: "$comments" },
+              isLiked: {
+                $cond: {
+                  if: { $in: [new mongoose.Types.ObjectId(req.user?._id), "$likes.likedBy"] },
+                  then: true,
+                  else: false
+                }
+              }
+            }
+          }
         ],
       },
     },
@@ -548,6 +632,138 @@ const removeVideoFromHistory = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "Video removed from watch history"));
 });
 
+const checkUsernameAvailability = asyncHandler(async (req, res) => {
+  const { username } = req.params;
+
+  if (!username || !username.trim()) {
+    return res
+      .status(400)
+      .json(new ApiResponse(400, { available: false }, "Username is required"));
+  }
+
+  if (!isClean(username)) {
+    return res
+      .status(200)
+      .json(new ApiResponse(200, { available: false, isSlur: true }, "Username contains inappropriate language"));
+  }
+
+  const user = await User.findOne({ username: username.toLowerCase() });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { available: !user }, user ? "Username is taken" : "Username is available"));
+});
+
+const generateAIUsername = asyncHandler(async (req, res) => {
+  let username = "";
+  let isUnique = false;
+
+  // Try AI generation exactly ONCE to avoid rate limits
+  try {
+    username = await generateUsernameAI();
+
+    // Check if the AI name is unique
+    if (isClean(username)) {
+      const existingUser = await User.findOne({ username });
+      if (!existingUser) {
+        isUnique = true;
+      }
+    }
+  } catch (error) {
+    console.error("AI Generation failed, falling back to random unique name");
+  }
+
+  // If AI attempt failed or was taken, generate a random one that IS unique
+  if (!isUnique) {
+    let randomUnique = "";
+    while (!isUnique) {
+      randomUnique = `user${Math.floor(1000 + Math.random() * 9000)}`;
+      const existing = await User.findOne({ username: randomUnique });
+      if (!existing) {
+        username = randomUnique;
+        isUnique = true;
+      }
+    }
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { username }, "Unique AI Username generated successfully"));
+});
+
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    throw new ApiError(400, "Email is required");
+  }
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new ApiError(404, "User with this email does not exist");
+  }
+
+  // Reuse OTP system
+  const otp = crypto.randomInt(100000, 999999).toString();
+  await OTP.findOneAndUpdate(
+    { email },
+    { otp },
+    { upsert: true, new: true }
+  );
+
+  await sendVerificationEmail(email, otp);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "OTP sent to your email for password reset"));
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { email, otp, newPassword } = req.body;
+
+  if (!email || !otp || !newPassword) {
+    throw new ApiError(400, "All fields (email, otp, newPassword) are required");
+  }
+
+  const otpRecord = await OTP.findOne({ email, otp });
+  if (!otpRecord) {
+    throw new ApiError(400, "Invalid or expired OTP");
+  }
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  user.password = newPassword;
+  await user.save({ validateBeforeSave: false });
+
+  // Delete OTP record
+  await OTP.deleteOne({ _id: otpRecord._id });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Password reset successfully. You can now login."));
+});
+
+const searchUsers = asyncHandler(async (req, res) => {
+  const { query = "" } = req.query;
+
+  if (!query.trim()) {
+    return res.status(200).json(new ApiResponse(200, [], "Empty query"));
+  }
+
+  const users = await User.find({
+    $or: [
+      { username: { $regex: query, $options: "i" } },
+      { fullName: { $regex: query, $options: "i" } },
+    ],
+  }).select("username fullName avatar");
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, users, "Users fetched successfully"));
+});
+
 export {
   registerUser,
   loginUser,
@@ -562,4 +778,9 @@ export {
   getWatchHistory,
   addVideoToHistory,
   removeVideoFromHistory,
+  checkUsernameAvailability,
+  generateAIUsername,
+  forgotPassword,
+  resetPassword,
+  searchUsers,
 };

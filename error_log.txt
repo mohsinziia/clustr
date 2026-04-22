@@ -104,3 +104,439 @@ Error: Unauthorized request
     at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
     at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
 
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Invalid old password
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:234:11
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: 400 Unknown Model, please check the model code.
+    at APIError.generate (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/core/error.mjs:41:20)
+    at OpenAI.makeStatusError (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/client.mjs:208:32)
+    at OpenAI.makeRequest (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/client.mjs:394:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async generateUsernameAI (file:///Users/mohsinzia/database-project/clustr/src/utils/ai.js:34:24)
+    at async file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:580:18
+
+Error: 400 Unknown Model, please check the model code.
+    at APIError.generate (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/core/error.mjs:41:20)
+    at OpenAI.makeStatusError (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/client.mjs:208:32)
+    at OpenAI.makeRequest (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/client.mjs:394:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async generateUsernameAI (file:///Users/mohsinzia/database-project/clustr/src/utils/ai.js:34:24)
+    at async file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:580:18
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: 429 Rate limit reached for requests
+    at APIError.generate (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/core/error.mjs:59:20)
+    at OpenAI.makeStatusError (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/client.mjs:208:32)
+    at OpenAI.makeRequest (file:///Users/mohsinzia/database-project/clustr/node_modules/openai/client.mjs:394:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async generateUsernameAI (file:///Users/mohsinzia/database-project/clustr/src/utils/ai.js:38:26)
+    at async file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:582:18
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Failed to send verification email
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/otp.controller.js:39:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: User with email or username already exists
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:60:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Please verify your email before logging in
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:142:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Please verify your email before logging in
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:142:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Please verify your email before logging in
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:142:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Please verify your email before logging in
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:142:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Please verify your email before logging in
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:142:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Invalid user credentials
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:154:11
+
+Error: Invalid Access Token
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Invalid Access Token
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Error while creating new cover image and deleting previous cover image
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:376:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Error while creating new cover image and deleting previous cover image
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:376:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Error while creating new cover image and deleting previous cover image
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:376:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Invalid user credentials
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:149:11
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: Unauthorized request
+    at file:///Users/mohsinzia/database-project/clustr/src/middlewares/auth.middleware.js:29:11
+    at file:///Users/mohsinzia/database-project/clustr/src/utils/asyncHandler.js:4:21
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mohsinzia/database-project/clustr/node_modules/express/lib/router/index.js:175:3)
+
+Error: User does not exist
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:138:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Error: Invalid user credentials
+    at file:///Users/mohsinzia/database-project/clustr/src/controllers/user.controller.js:149:11
+

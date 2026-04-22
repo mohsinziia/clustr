@@ -13,7 +13,13 @@ import {
   getWatchHistory,
   addVideoToHistory,
   removeVideoFromHistory,
+  checkUsernameAvailability,
+  generateAIUsername,
+  forgotPassword,
+  resetPassword,
+  searchUsers,
 } from "../controllers/user.controller.js";
+import { sendOTP, verifyOTP } from "../controllers/otp.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
@@ -34,6 +40,12 @@ router.route("/register").post(
 );
 
 router.route("/login").post(loginUser);
+router.route("/check-username/:username?").get(checkUsernameAvailability);
+router.route("/generate-username").post(generateAIUsername);
+router.route("/send-otp").post(sendOTP);
+router.route("/verify-otp").post(verifyOTP);
+router.route("/forgot-password").post(forgotPassword);
+router.route("/reset-password").post(resetPassword);
 
 // secured routes
 router.route("/logout").post(verifyJWT, logoutUser);
@@ -53,5 +65,7 @@ router
   .route("/history/:videoId")
   .post(verifyJWT, addVideoToHistory)
   .delete(verifyJWT, removeVideoFromHistory);
+
+router.route("/search").get(verifyJWT, searchUsers);
 
 export default router;
